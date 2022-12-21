@@ -94,11 +94,9 @@ const App = (): JSX.Element => {
             }}
           />
         )}
-        <div className="flex gap-16 pb-8">
+        <div className="flex gap-16 pb-8 hidden md:block">
           <StandardFacets
-            customCssClasses={{
-              standardFacetsContainer: "min-w-[200px]  hidden md:block",
-            }}
+            customCssClasses={{ standardFacetsContainer: "min-w-[200px]" }}
           />
           <div className="flex-col">
             <ResultsCount customCssClasses={{ resultsCountContainer: "" }} />
