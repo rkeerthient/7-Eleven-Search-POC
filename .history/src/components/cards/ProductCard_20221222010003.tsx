@@ -8,7 +8,7 @@ export const ProductCard = ({ result }: CardProps<Product>): JSX.Element => {
   const product = result.rawData;
   const fireEventAndNavigate = () => {
     fireClickEvent("coffee", product.id);
-    // window.location.href = `/productdetail/${product.id}`;
+    window.location.href = `/productdetail/${product.id}`;
   };
   return (
     <a
