@@ -6,12 +6,15 @@ import { useProdContext } from "../../context/prodContext";
 
 export const ProductCard = ({ result }: CardProps<Product>): JSX.Element => {
   const product = result.rawData;
+  const { setIsProdDetail } = useProdContext();
 
   return (
     <a
       href={`/productdetail/${product.id}`}
       className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 gap-4 h-90"
-      onClick={() => fireClickEvent("coffee", product.id)}
+      onClick={() => {
+        fireClickEvent("coffee", product.id), setIsProdDetail(true);
+      }}
     >
       <div className="flex align-center justify-between">
         <img className="h-48 w-48" src={product.c_thumbnail?.url} alt="" />

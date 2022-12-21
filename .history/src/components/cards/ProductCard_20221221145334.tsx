@@ -6,6 +6,7 @@ import { useProdContext } from "../../context/prodContext";
 
 export const ProductCard = ({ result }: CardProps<Product>): JSX.Element => {
   const product = result.rawData;
+  const { setIsProdDetail } = useProdContext();
 
   return (
     <a

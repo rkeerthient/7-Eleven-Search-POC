@@ -83,7 +83,7 @@ const App = (): JSX.Element => {
   return (
     <div className="flex justify-center px-4 py-6">
       <div className="w-full max-w-7xl home">
-        {!isProdDetail && (
+        {/* {!isProdDetail && (
           <SearchBar
             visualAutocompleteConfig={{
               entityPreviewSearcher: entityPreviewSearcher,
@@ -93,7 +93,7 @@ const App = (): JSX.Element => {
               entityPreviewsDebouncingTime: 500,
             }}
           />
-        )}
+        )} */}
         <div className="flex gap-16 pb-8">
           <StandardFacets
             customCssClasses={{ standardFacetsContainer: "min-w-[200px]" }}

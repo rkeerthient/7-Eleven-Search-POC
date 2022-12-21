@@ -1,0 +1,50 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+export type ParamTypes = {
+  id: string;
+};
+const ProductDetail = () => {
+  const { id } = useParams<ParamTypes>();
+  const fetchProduct = async () => {
+    try {
+      const response = await fetch(
+        `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/${id}?api_key=9bf9a3d052c2f225a8b8c38906d1e078&v=20220101`
+      );
+
+      const responseJson = await response.json();
+      const resultData: Root = responseJson.response;
+      setShowVariant(false);
+      setData(await resultData);
+      setSchemaOrg({
+        "@context": "https://schema.org",
+        "@type": "Product",
+        name: resultData.name,
+        image: resultData.c_customPhoto,
+        description: resultData.richTextDescription,
+        brand: {
+          "@type": "Brand",
+          name: resultData.brand,
+        },
+        sku: resultData.meta.id,
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: resultData.c_cRating,
+        },
+        offers: {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          price: resultData.price.value,
+          priceCurrency: resultData.price.currencyCode,
+        },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    fetchProduct();
+  }, [id]);
+  return <h1>Hi</h1>;
+};
+
+export default ProductDetail;

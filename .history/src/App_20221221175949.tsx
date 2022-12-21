@@ -84,15 +84,15 @@ const App = (): JSX.Element => {
     <div className="flex justify-center px-4 py-6">
       <div className="w-full max-w-7xl home">
         {!isProdDetail && (
-          <SearchBar
-            visualAutocompleteConfig={{
-              entityPreviewSearcher: entityPreviewSearcher,
-              includedVerticals: ["products"],
-              renderEntityPreviews: renderEntityPreviews,
-              universalLimit: { products: 4 },
-              entityPreviewsDebouncingTime: 500,
-            }}
-          />
+          // <SearchBar
+          //   visualAutocompleteConfig={{
+          //     entityPreviewSearcher: entityPreviewSearcher,
+          //     includedVerticals: ["products"],
+          //     renderEntityPreviews: renderEntityPreviews,
+          //     universalLimit: { products: 4 },
+          //     entityPreviewsDebouncingTime: 500,
+          //   }}
+          // />
         )}
         <div className="flex gap-16 pb-8">
           <StandardFacets

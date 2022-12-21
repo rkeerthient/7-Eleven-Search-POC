@@ -19,8 +19,6 @@ import { ProductCard } from "./components/cards/ProductCard";
 import { Product } from "./types/products";
 import classnames from "classnames";
 import { provideSearchAnalytics } from "@yext/analytics"; // can also be imported as provideAnalytics
-import { useProdContext } from "./context/prodContext";
-import { useEffect } from "react";
 
 const entityPreviewSearcher = provideHeadless({
   apiKey: "184b8f65a7921212f4a09118718f3db9",
@@ -38,7 +36,7 @@ const searchAnalytics = provideSearchAnalytics({
 
 const App = (): JSX.Element => {
   const query = useSearchState((state) => state.query.input);
-  const { isProdDetail, setIsProdDetail } = useProdContext();
+
   const renderEntityPreviews: RenderEntityPreviews = (
     autocompleteLoading,
     verticalKeyToResults: Record<string, VerticalResultsData>,
@@ -77,23 +75,19 @@ const App = (): JSX.Element => {
       </div>
     ) : null;
   };
-  useEffect(() => {
-    !isProdDetail && setIsProdDetail(false);
-  });
+
   return (
     <div className="flex justify-center px-4 py-6">
       <div className="w-full max-w-7xl home">
-        {!isProdDetail && (
-          <SearchBar
-            visualAutocompleteConfig={{
-              entityPreviewSearcher: entityPreviewSearcher,
-              includedVerticals: ["products"],
-              renderEntityPreviews: renderEntityPreviews,
-              universalLimit: { products: 4 },
-              entityPreviewsDebouncingTime: 500,
-            }}
-          />
-        )}
+        <SearchBar
+          visualAutocompleteConfig={{
+            entityPreviewSearcher: entityPreviewSearcher,
+            includedVerticals: ["products"],
+            renderEntityPreviews: renderEntityPreviews,
+            universalLimit: { products: 4 },
+            entityPreviewsDebouncingTime: 500,
+          }}
+        />
         <div className="flex gap-16 pb-8">
           <StandardFacets
             customCssClasses={{ standardFacetsContainer: "min-w-[200px]" }}

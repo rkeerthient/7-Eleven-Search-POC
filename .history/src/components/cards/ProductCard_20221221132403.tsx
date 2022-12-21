@@ -1,17 +1,18 @@
 import { Product } from "../../types/products";
 import { CardProps } from "@yext/search-ui-react";
 import { fireClickEvent } from "../../utils/search_analytics";
-import { Link } from "react-router-dom";
-import { useProdContext } from "../../context/prodContext";
+import ProductDetail from "../../Pages/ProductDetail";
 
 export const ProductCard = ({ result }: CardProps<Product>): JSX.Element => {
   const product = result.rawData;
 
   return (
-    <a
-      href={`/productdetail/${product.id}`}
+    <div
       className="flex flex-col justify-between bg-white rounded-lg shadow-lg p-6 gap-4 h-90"
-      onClick={() => fireClickEvent("coffee", product.id)}
+      onClick={() => {
+        fireClickEvent("coffee", product.id),
+          history.pushState(null, "", `/ProductDetail/${product.id}`);
+      }}
     >
       <div className="flex align-center justify-between">
         <img className="h-48 w-48" src={product.c_thumbnail?.url} alt="" />
@@ -25,6 +26,6 @@ export const ProductCard = ({ result }: CardProps<Product>): JSX.Element => {
           {product.c_sizes?.[0]}
         </p>
       </div>
-    </a>
+    </div>
   );
 };

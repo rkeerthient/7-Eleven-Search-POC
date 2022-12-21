@@ -78,7 +78,7 @@ const App = (): JSX.Element => {
     ) : null;
   };
   useEffect(() => {
-    !isProdDetail && setIsProdDetail(false);
+    setIsProdDetail(false);
   });
   return (
     <div className="flex justify-center px-4 py-6">

@@ -24,8 +24,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ProdContextProvider>
         <BrowserRouter>
           <Routes>
-            {/* <Route path="/" index element={<App />} /> */}
-            <Route path="/productdetail/:id" element={<ProductDetail />} />
+            <Route
+              path="/productdetail/:id"
+              element={
+                <div className="pdPage">
+                  <ProductDetail />
+                </div>
+              }
+            />
           </Routes>
         </BrowserRouter>
         <App />

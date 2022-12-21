@@ -8,7 +8,6 @@ import {
 } from "@yext/search-headless-react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductDetail from "./Pages/ProductDetail";
-import { ProdContextProvider } from "./context/prodContext";
 
 const searcher = provideHeadless({
   apiKey: "184b8f65a7921212f4a09118718f3db9",
@@ -21,15 +20,12 @@ searcher.setSessionTrackingEnabled(true);
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <SearchHeadlessProvider searcher={searcher}>
-      <ProdContextProvider>
-        <BrowserRouter>
-          <Routes>
-            {/* <Route path="/" index element={<App />} /> */}
-            <Route path="/productdetail/:id" element={<ProductDetail />} />
-          </Routes>
-        </BrowserRouter>
-        <App />
-      </ProdContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/PropductDetail/:id" element={<ProductDetail />} />
+        </Routes>
+      </BrowserRouter>
+      <App />
     </SearchHeadlessProvider>
   </React.StrictMode>
 );
